@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>bayer by Damien Seguin (https://github.com/dmnsgn)</title>
+    <style>
+      :root {
+        --color-dark: #404040;
+        --color-light: #f2f2f2;
+        --color-accent: #fd5e62;
+      }
+
+      body {
+        margin: 0;
+        overscroll-behavior: none;
+        font-family: sans-serif;
+        color: var(--color-dark);
+        background-color: var(--color-light);
+      }
+
+      main {
+        padding: 0 20px;
+      }
+
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>bayer</h1>
+    </main>
+
+    <script type="module">
+      import computeBayerMatrix from "./index.js";
+
+      const mainElement = document.querySelector("main");
+
+      // Draw linear gradient
+      const draw1DCanvas = (context) => {
+        const { width, height } = context.canvas;
+        for (let i = 0; i < width; i++) {
+          const n = i / width;
+          context.fillStyle = `rgb(${Array(3)
+            .fill(n * 255)
+            .join(",")})`;
+          context.fillRect(i, 0, 1, height);
+        }
+      };
+
+      // Draw matrix
+      const getLuminance = (r, g, b) => r * 0.299 + g * 0.587 + b * 0.114;
+
+      function preCalculate(matrix, size) {
+        return matrix.map((row) => row.map((v) => 255 * ((v + 1) / size ** 2)));
+      }
+
+      // https://en.wikipedia.org/wiki/Ordered_dithering
+      function bayer(image, threshold = 128, size = 4) {
+        const thresholdMap = preCalculate(computeBayerMatrix(size), size);
+
+        for (let i = 0; i < image.data.length; i += 4) {
+          const luminance = getLuminance(
+            image.data[i],
+            image.data[i + 1],
+            image.data[i + 2]
+          );
+
+          const x = (i / 4) % image.width;
+          const y = Math.floor(i / 4 / image.width);
+          const map = Math.floor(
+            (luminance + thresholdMap[x % size][y % size]) / 2
+          );
+          const value = map < threshold ? 0 : 255;
+          image.data.fill(value, i, i + 3);
+        }
+
+        return image;
+      }
+
+      [2, 4, 8].forEach((size) => {
+        const title = document.createElement("h2");
+        title.innerHTML = size;
+        const canvasMatrix = document.createElement("canvas");
+        canvasMatrix.width = 192 * size;
+        canvasMatrix.height = 96;
+        const canvasMatrixContext = canvasMatrix.getContext("2d");
+
+        draw1DCanvas(canvasMatrixContext);
+
+        const imageData = canvasMatrixContext.getImageData(
+          0,
+          0,
+          canvasMatrix.width,
+          canvasMatrix.height / 2
+        );
+
+        bayer(imageData, 128, size);
+
+        canvasMatrixContext.putImageData(imageData, 0, 0);
+        mainElement.appendChild(title);
+        mainElement.appendChild(canvasMatrix);
+      });
+    </script>
+  </body>
+</html>
