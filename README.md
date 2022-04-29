@@ -40,7 +40,18 @@ const matrix = bayer();
 
 <!-- api-start -->
 
-Auto-generated API content.
+<a name="bayer"></a>
+
+## bayer(size) ⇒ <code>Array.&lt;Array&gt;</code>
+
+Compute the bayer matrix based for powers of two.
+
+**Kind**: global function
+**Returns**: <code>Array.&lt;Array&gt;</code> - A 2D array containing the matrix.
+
+| Param | Type                | Default        | Description                                                                                 |
+| ----- | ------------------- | -------------- | ------------------------------------------------------------------------------------------- |
+| size  | <code>number</code> | <code>2</code> | Needs to be a power of two otherwise will throw a "Maximum call stack size exceeded" Error. |
 
 <!-- api-end -->
 
