@@ -1,6 +1,6 @@
 {
   "name": "bayer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Compute the bayer matrix based for powers of two. Useful for ordered dithering algorithms.",
   "keywords": [
     "bayer",
