@@ -1,5 +1,5 @@
 /**
- * Compute the bayer matrix based for powers of two.
+ * Compute the bayer matrix for powers of two.
  * @param {number} size Needs to be a power of two otherwise will throw a "Maximum call stack size exceeded" Error.
  * @returns {Array[]} A 2D array containing the matrix.
  */

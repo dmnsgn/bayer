@@ -1,7 +1,7 @@
 {
   "name": "bayer",
   "version": "1.0.1",
-  "description": "Compute the bayer matrix based for powers of two. Useful for ordered dithering algorithms.",
+  "description": "Compute the bayer matrix for powers of two. Useful for ordered dithering algorithms.",
   "keywords": [
     "bayer",
     "matrix",
@@ -29,7 +29,7 @@
   "main": "index.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "test": "node test"
+    "test": "node --test"
   },
   "engines": {
     "node": ">=16.0.0",
