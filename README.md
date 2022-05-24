@@ -44,7 +44,7 @@ const matrix = bayer();
 
 ## bayer(size) ⇒ <code>Array.&lt;Array&gt;</code>
 
-Compute the bayer matrix based for powers of two.
+Compute the bayer matrix for powers of two.
 
 **Kind**: global function
 **Returns**: <code>Array.&lt;Array&gt;</code> - A 2D array containing the matrix.
