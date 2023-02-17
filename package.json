@@ -29,10 +29,13 @@
   "main": "index.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "test": "node --test"
+    "test": "c8 node --test --test-reporter spec"
   },
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=7.0.0"
+  },
+  "devDependencies": {
+    "c8": "^7.13.0"
   }
 }
