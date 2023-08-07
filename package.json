@@ -29,13 +29,11 @@
   "main": "index.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "test": "c8 node --test --test-reporter spec"
+    "test": "node --experimental-test-coverage test",
+    "test:watch": "node --watch --experimental-test-coverage test"
   },
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
-  },
-  "devDependencies": {
-    "c8": "^7.13.0"
+    "node": ">=18.0.0",
+    "npm": ">=8.6.0"
   }
 }
