@@ -1,6 +1,6 @@
 {
   "name": "bayer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Compute the bayer matrix for powers of two. Useful for ordered dithering algorithms.",
   "keywords": [
     "bayer",
@@ -11,7 +11,10 @@
   ],
   "homepage": "https://github.com/dmnsgn/bayer",
   "bugs": "https://github.com/dmnsgn/bayer/issues",
-  "repository": "dmnsgn/bayer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmnsgn/bayer.git"
+  },
   "funding": [
     {
       "type": "individual",
