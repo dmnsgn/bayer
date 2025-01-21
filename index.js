@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/require-param */
+
 /**
  * Compute the bayer matrix for powers of two.
  * @param {number} size Needs to be a power of two otherwise will throw a "Maximum call stack size exceeded" Error.
